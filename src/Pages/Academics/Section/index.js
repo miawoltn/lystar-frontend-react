@@ -8,8 +8,10 @@ import SectionForm from './SectionForm';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 //axios.defaults.baseURL = 'https://192.168.0.33:44319/api/v1/';
-axios.defaults.baseURL = 'http://lytstarbackend-947718277.us-west-2.elb.amazonaws.com/api/v1/';
-axios.defaults.timeout = 5000
+//axios.defaults.baseURL = 'https://lytstarbackend-947718277.us-west-2.elb.amazonaws.com/api/v1/';
+
+axios.defaults.baseURL = process.env.REACT_APP_PROTOCOL+process.env.REACT_APP_BACKEND_URL
+//axios.defaults.timeout = 5000
 
 export default class SectionPage extends Component {
     constructor(props) {
