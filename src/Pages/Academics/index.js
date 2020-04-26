@@ -1,0 +1,27 @@
+import React, {Fragment} from 'react';
+import {Route} from 'react-router-dom'; 
+
+// Layout
+import AppHeader from '../../Layout/AppHeader/';
+import AppSidebar from '../../Layout/AppSidebar/'; 
+
+// Components
+import ClassPage from './Class/';
+import SectionPage from './Section/'
+
+const Class = ({match}) => (
+            <Fragment>
+            <AppHeader/>
+            <div className="app-main">
+                <AppSidebar/>
+                <div className="app-main__outer">
+                    <div className="app-main__inner">
+                        <Route path={`${match.url}/class`} component={ClassPage}/>
+                        <Route path={`${match.url}/section`} component={SectionPage}/>
+                    </div>
+                    {/* <AppFooter/> */}
+                </div>
+            </div>
+        </Fragment>
+)
+export default Class;

@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import cx from 'classnames';
-
+import BreadCrumb from '../Utilities/BreadCrumb';
 import TitleComponent2 from './PageTitleExamples/Variation2'
 
 class PageTitle extends Component {
 
     render() {
+        console.log("PageTitle props: ", this.props);
         let {
             enablePageTitleIcon,
             enablePageTitleSubheading,
@@ -34,7 +35,7 @@ class PageTitle extends Component {
                         </div>
                     </div>
                     <div className="page-title-actions">
-                        {/* <TitleComponent2/> */}
+                    <BreadCrumb {...this.props} /> 
                     </div>
                 </div>
             </div>

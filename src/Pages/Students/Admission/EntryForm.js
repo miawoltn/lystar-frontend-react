@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup'; 
+import axios from 'axios';
 import {
     Col, Row, Card, CardBody, Form,
     CardTitle, Button, FormGroup, Label, Input, FormFeedback, CustomInput
@@ -34,6 +35,24 @@ export default function EntryForm() {
     });
     const onSubmit = data => {
         console.log(data);
+        let headers = {
+            'Content-Type': 'application/json;charset=UTF-8',
+            "Access-Control-Allow-Origin": "*"
+
+        }
+        axios.post('https://192.168.0.33:44319/api/students', {
+            name: {
+                FirstName: data.firstName,
+                LastName: data.lastName
+            }, 
+            DOB: data.dob,
+            Gender: data.gender,
+        }, headers)
+        .then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
+       
     }
 
     return (
@@ -129,7 +148,7 @@ export default function EntryForm() {
                                 <Col md={4}>
                                     <FormGroup>
                                         <Label for="middleName">Middle Name</Label>
-                                        <Input type="text" name="middleName" id="middleName"
+                                        <Input type="text" name="middleName" id="middleName" innerRef={register}
                                             placeholder="Enter student's middle name" />
                                     </FormGroup>
                                 </Col>
@@ -148,13 +167,13 @@ export default function EntryForm() {
                                 {/* Gender */}
                                 <Col md={3}>
                                     <FormGroup>
-                                        <Label for="exampleCity">Gender*</Label>
+                                        <Label for="gender">Gender*</Label>
                                         <Input type="select" name="gender" id="gender" innerRef={register}
                                             invalid={errors.gender && true}
                                         >
                                             <option value="">Select...</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="0">Male</option>
+                                            <option value="1">Female</option>
                                         </Input>
                                         <FormFeedback>{errors.gender && errors.gender.message}</FormFeedback>
                                     </FormGroup>
@@ -198,34 +217,51 @@ export default function EntryForm() {
                                 <Col>
                                     <FormGroup>
                                         <Label for="bloodGroup">Blood Group</Label>
-                                        <Input type="select" name="bloodGroup" id="bloodGroup">
+                                        <Input type="select" name="bloodGroup" id="bloodGroup" innerRef={register} >
                                             <option value="">Select...</option>
-                                            <option value="">A+</option>
-                                            <option value="">A-</option>
-                                            <option value="">O+</option>
-                                            <option value="">O-</option>
-                                            <option value="">B+</option>
-                                            <option value="">B-</option>
-                                            <option value="">AB+</option>
-                                            <option value="">AB-</option>
+                                            <option value="0">A+</option>
+                                            <option value="1">A-</option>
+                                            <option value="2">O+</option>
+                                            <option value="3">O-</option>
+                                            <option value="4">B+</option>
+                                            <option value="5">B-</option>
+                                            <option value="6">AB+</option>
+                                            <option value="7">AB-</option>
+                                        </Input>
+                                    </FormGroup>
+                                </Col>
+                                {/* Disorder */}
+                                <Col>
+                                    <FormGroup>
+                                        <Label for="disorder">Disorder</Label>
+                                        <Input type="select" name="disorder" id="disorder" innerRef={register} >
+                                            <option value="">Select...</option>
+                                            <option value="0">Normal</option>
+                                            <option value="1">OCD</option>
+                                            <option value="2">ADHD</option>
+                                            <option value="3">ODD</option>
+                                            <option value="4">AD</option>
+                                            <option value="5">CD</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
                                 {/* Religion */}
                                 <Col>
                                     <FormGroup>
-                                        <Label for="studentReligion">Religion</Label>
-                                        <Input type="select" name="studentReligion" id="studentReligion">
+                                        <Label for="religion">Religion</Label>
+                                        <Input type="select" name="religion" id="religion" innerRef={register} >
                                             <option value="">Select...</option>
-                                            <option value="islam">Islam</option>
-                                            <option value="christianity">Christianity</option>
-                                            <option value="judaism">Judaism</option>
-                                            <option value="others">Others</option>
+                                            <option value="0">Islam</option>
+                                            <option value="1">Christianity</option>
+                                            <option value="2">Judaism</option>
+                                            <option value="3">Others</option>
                                         </Input>
                                     </FormGroup>
                                 </Col>
-                                {/* Height */}
-                                <Col>
+                            </Row>
+                            <Row>
+                                 {/* Height */}
+                                 <Col>
                                     <FormGroup>
                                         <Label for="height">Height (CM)</Label>
                                         <Input type="number" name="height" id="height" innerRef={register}
@@ -247,36 +283,40 @@ export default function EntryForm() {
                                 {/* Photo */}
                                 <Col>
                                     <FormGroup>
-                                        <Label for="studentPhoto">Photo</Label>
-                                        <CustomInput type="file" name="studentPhoto" id="studentPhoto" />
+                                        <Label for="photo">Photo</Label>
+                                        <CustomInput type="file" name="photo" id="photo" innerRef={register} />
                                     </FormGroup>
                                 </Col>
                             </Row>
                             {/* Address Line 1 */}
                             <FormGroup>
-                                <Label for="studentAddress1">Address*</Label>
-                                <Input type="text" name="studentAddress1" id="studentAddress1"
-                                    placeholder="1234 Main St" />
+                                <Label for="Address1">Address*</Label>
+                                <Input type="text" name="Address1" id="Address1"
+                                    placeholder="1234 Main St" innerRef={register} />
                             </FormGroup>
                             {/* Address Line2 */}
                             <FormGroup>
-                                <Label for="studentAddress2">Address 2</Label>
-                                <Input type="text" name="studentAddress2" id="studentAddress2"
-                                    placeholder="Apartment, studio, or floor" />
+                                <Label for="Address2">Address 2</Label>
+                                <Input type="text" name="Address2" id="Address2"
+                                    placeholder="Apartment, studio, or floor" innerRef={register} />
                             </FormGroup>
                             <Row form>
                                 {/* City */}
                                 <Col md={4}>
                                     <FormGroup>
                                         <Label for="city">City</Label>
-                                        <Input type="text" name="studentCity" id="studentCity" />
+                                        <Input type="select" name="city" id="city" innerRef={register} >
+                                            <option value="">Select...</option>
+                                        </Input>
                                     </FormGroup>
                                 </Col>
                                 {/* State */}
                                 <Col md={4}>
                                     <FormGroup>
-                                        <Label for="studentState">State</Label>
-                                        <Input type="text" name="studentState" id="studentState" />
+                                        <Label for="state">State</Label>
+                                        <Input type="select" name="state" id="state" innerRef={register} >
+                                            <option value="">Select...</option>
+                                        </Input>
                                     </FormGroup>
                                 </Col>
                                 {/* Zip Code */}

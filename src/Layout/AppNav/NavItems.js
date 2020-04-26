@@ -15,12 +15,33 @@ export const MainNav = [
 
 export const StudentNav = [
     {
-        icon: 'bell',
+        icon: 'flaticon-graduated-student',
         label: 'Student',
         content: [
             {
                 label: 'Admission',
                 to: '#/student/admission'
+            }
+        ]
+    }
+];
+
+export const AcademicsNav = [
+    {
+        icon: 'flaticon-reading',
+        label: 'Academics',
+        content: [
+            {
+                label: 'Section',
+                to: '#/academics/section'
+            },
+            {
+                label: 'Class',
+                to: '#/academics/class'
+            },
+            {
+                label: 'Subjects',
+                to: '#/academics/subject'
             }
         ]
     }

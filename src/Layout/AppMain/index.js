@@ -8,6 +8,7 @@ import {
 //const Dashboards = lazy(() => import('../../Pages/Dashboards'));
 
 const Student = lazy(() => import('../../Pages/Students'))
+const Academics = lazy(() => import('../../Pages/Academics'))
 
 // const Widgets = lazy(() => import('../../Pages/Widgets'));
 // const Elements = lazy(() => import('../../Pages/Elements'));
@@ -27,13 +28,26 @@ const AppMain = () => {
                 <div className="loader-container">
                     <div className="loader-container-inner">
                         <h6 className="mt-3">
-                            Please wait while we load all the Dashboards examples
-                            <small>Because this is a demonstration, we load at once all the Dashboards examples. This wouldn't happen in a real live app!</small>
+                            Lytstar
+                            <small>Please wait while the app loads...</small>
                         </h6>
                     </div>
                 </div>
             }>
                 <Route path="/student" component={Student}/>
+            </Suspense>
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <h6 className="mt-3">
+                            Lytstar
+                            <small>Please wait while the app loads...</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/academics" component={Academics}/>
             </Suspense>
 
             <Route exact path="/" render={() => (

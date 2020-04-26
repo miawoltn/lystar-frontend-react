@@ -3,15 +3,7 @@ import {withRouter} from 'react-router-dom';
 
 import MetisMenu from 'react-metismenu';
 
-import {MainNav, StudentNav, ComponentsNav, FormsNav, WidgetsNav, ChartsNav} from './NavItems';
-
-import {
-    faCalendarAlt,
-    faAngleDown
-
-} from '@fortawesome/free-solid-svg-icons';
-
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {MainNav, StudentNav, AcademicsNav, FormsNav, WidgetsNav, ChartsNav} from './NavItems';
 
 class Nav extends Component {
 
@@ -20,8 +12,9 @@ class Nav extends Component {
     render() {
         return (
             <Fragment>
-                <MetisMenu content={MainNav} activeLinkFromLocation className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/> 
+                <MetisMenu content={MainNav} activeLinkFromLocation className="vertical-nav-menu" classNameStateIcon="pe-7s-angle-down"/> 
                 <MetisMenu content={StudentNav} activeLinkFromLocation className="vertical-nav-menu"  classNameStateIcon="pe-7s-angle-down"/>
+                <MetisMenu content={AcademicsNav} activeLinkFromLocation className="vertical-nav-menu"  classNameStateIcon="pe-7s-angle-down"/>
                 {/* <h5 className="app-sidebar__heading">Menu</h5>
                 <MetisMenu content={MainNav} activeLinkFromLocation className="vertical-nav-menu" iconNamePrefix="" classNameStateIcon="pe-7s-angle-down"/>
                 <h5 className="app-sidebar__heading">UI Components</h5>
