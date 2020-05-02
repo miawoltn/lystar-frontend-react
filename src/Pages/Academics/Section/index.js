@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 //axios.defaults.baseURL = 'https://lytstarbackend-947718277.us-west-2.elb.amazonaws.com/api/v1/';
 
 axios.defaults.baseURL = process.env.REACT_APP_PROTOCOL+process.env.REACT_APP_BACKEND_URL
-//axios.defaults.timeout = 5000
+axios.defaults.timeout = process.env.REACT_APP_AXIOS_TIMEOUT
 
 export default class SectionPage extends Component {
     constructor(props) {
